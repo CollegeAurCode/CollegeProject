@@ -1,0 +1,15 @@
+.subjectHeading{
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ece7ff;
+}
+
+.subCard{
+    width: 18rem;
+    transition: all 0.3s; 
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.subCard:hover{
+    transform: translateY(-12px);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+}
