@@ -8,7 +8,7 @@ const { passwordUpdated } = require("../mail/passwordUpdate")
 const Profile = require("../models/Profile")
 require("dotenv").config()
 
-// Signup Controller for Registering USers
+// Signup Controller for Registering Users *
 
 exports.signup = async (req, res) => {
     try {
@@ -50,7 +50,7 @@ exports.signup = async (req, res) => {
       const profileDetails = await Profile.create({
         gender: null,
         dateOfBirth: null,
-        about: null,
+        about: null, 
         contactNumber: null,
       });
   
@@ -81,7 +81,7 @@ exports.signup = async (req, res) => {
     }
   };
   
-// Login controller for authenticating users
+// Login controller for authenticating users *
 exports.login = async (req, res) => {
     try {
       const { email, password } = req.body;
@@ -134,7 +134,7 @@ exports.login = async (req, res) => {
     }
   };
   
-// Send OTP For Email Verification
+// Send OTP For Email Verification *
 exports.sendotp = async (req, res) => {
     try {
       const { email } = req.body;
@@ -179,7 +179,7 @@ exports.sendotp = async (req, res) => {
   };
   
 
-// Controller for Changing Password
+// Controller for Changing Password *
 exports.changePassword = async (req, res) => {
     try {
       const userDetails = await User.findById(req.user.id);
