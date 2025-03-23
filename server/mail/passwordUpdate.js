@@ -55,6 +55,8 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
+            <a href=""><img class="logo" src="https://res.cloudinary.com/dxl7vgxf9/image/upload/v1742479094/mail-logo_yqj9tv.jpg"
+                            alt="CollegeAurCode Logo"></a>
             
             <div class="message">Password Update Confirmation</div>
             <div class="body">
