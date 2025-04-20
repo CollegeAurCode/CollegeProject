@@ -66,7 +66,7 @@ export async function BuyCourse(
 
     // Opening the Razorpay SDK
     const options = {
-      key: process.env.RAZORPAY_KEY,
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID,  // This is where your Razorpay key is used
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.data.id,
@@ -82,13 +82,17 @@ export async function BuyCourse(
         verifyPayment({ ...response, courses }, token, navigate, dispatch)
       },
     }
+    
+    // Log the Razorpay Key
+    console.log("Razorpay Key:", process.env.REACT_APP_RAZORPAY_KEY_ID)
+    
     const paymentObject = new window.Razorpay(options)
-
     paymentObject.open()
     paymentObject.on("payment.failed", function (response) {
       toast.error("Oops! Payment Failed.")
       console.log(response.error)
     })
+    
   } catch (error) {
     console.log("PAYMENT API ERROR............", error)
     toast.error("Could Not make Payment.")
