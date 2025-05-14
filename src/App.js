@@ -24,6 +24,19 @@ import Contact from "./pages/Contact"
 import CourseDetails from "./pages/CourseDetails"
 import Dashboard from "./pages/Dashboard"
 import Error from "./pages/Error"
+
+
+// blog
+import "./App.css";
+import { useContext} from "react";
+import { AppContext } from "./Context/AppContext";
+import { useLocation, useSearchParams} from "react-router-dom";
+import BlogPage from "./pages/BlogPage";
+import CategoryPage from "./pages/CategoryPage";
+import TagPage from "./pages/TagPage";
+import BlogHome from "./pages/BlogHome";
+
+
 import ForgotPassword from "./pages/ForgotPassword"
 // Pages
 import Home from "./pages/Home"
@@ -48,15 +61,47 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const { fetchBlogPosts, page  } = useContext(AppContext);
+
+  const[searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+
+  useEffect(() => {
+    const page = searchParams.get("page") ?? 1;
+
+    if(location.pathname.includes("tags")){
+      //iska matlb tag bala page show krna hai
+      const tag = location.pathname.split("/").at(-1).replace("-"," ");
+      fetchBlogPosts(Number(page), tag);
+    }
+    else  if(location.pathname.includes("categories")){
+      const category = location.pathname.split("/").at(-1).replace("-"," ");
+      fetchBlogPosts(Number(page), null, category);
+    }
+    else{
+      fetchBlogPosts(Number(page));
+    }
+  }, [location.pathname, location.search  ]);
+
   return (
     <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter">
       <Navbar />
-      <Routes>
+
+      <Routes >
+
+      {/* Blog Routes */}
+      <Route path="/blog" element={<BlogHome/>} />
+      <Route path="/blog/:blogId" element={<BlogPage/>} />
+      <Route path="/tag/:tag" element={<TagPage/>} />
+      <Route path="/categories/:category" element={<CategoryPage/>} />
+      
+      {/* Main Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
+        
         {/* Open Route - for Only Non Logged in User */}
         <Route
           path="login"
