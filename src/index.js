@@ -12,6 +12,7 @@ import rootReducer from "./reducer";
 
 import "./index.css";
 
+import Chatbot from "../src/components/chatbot/Chatbot"
 import AppContextProvider from "./Context/AppContext";
 
 const store = configureStore({
@@ -25,6 +26,8 @@ root.render(
     <BrowserRouter>
       <AppContextProvider>  
         <App />
+        <Chatbot/>
+        <Toaster/>
       </AppContextProvider>
     </BrowserRouter>
   </Provider>

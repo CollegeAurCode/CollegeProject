@@ -24,7 +24,7 @@ import Contact from "./pages/Contact"
 import CourseDetails from "./pages/CourseDetails"
 import Dashboard from "./pages/Dashboard"
 import Error from "./pages/Error"
-
+import Chatbot from "../src/components/chatbot/Chatbot"
 
 // blog
 import "./App.css";
@@ -86,7 +86,7 @@ function App() {
   return (
     <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter">
       <Navbar />
-
+     <Chatbot/>
       <Routes >
 
       {/* Blog Routes */}
